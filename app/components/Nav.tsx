@@ -4,8 +4,11 @@ import { Session } from "next-auth"
 import { signIn } from "next-auth/react"
 import Image from "next/image"
 import Link from "next/link"
+import Cart from "./Cart"
+import { useCartStore } from "@/store"
 
 export default function Nav({ user }: Session) {
+  const cartStore = useCartStore()
   return (
     <nav className="flex justify-between items-center py-8">
       <Link href={"/"}>
@@ -29,6 +32,7 @@ export default function Nav({ user }: Session) {
           </li>
         )}
       </ul>
+      {cartStore.isOpen && <Cart />}
     </nav>
   )
 }
